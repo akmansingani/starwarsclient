@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MovieTitle snapshot renders 1`] = `
+<div>
+  <div
+    className="quesText mb-2"
+  >
+    Which of all StarWars movies has longest opening crawl ?
+  </div>
+  <div
+    className="ansText mb-4"
+  >
+    test
+  </div>
+</div>
+`;
