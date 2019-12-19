@@ -1,5 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MostAppearedCharacter snapshot renders 1`] = `
+<div>
+  <div
+    className="quesText mb-2"
+  >
+    What character(person) appeared in the most of StarWar Films ?
+  </div>
+  <div
+    className="ansText mb-4"
+  >
+    test
+  </div>
+</div>
+`;
+
 exports[`MovieTitle snapshot renders 1`] = `
 <div>
   <div

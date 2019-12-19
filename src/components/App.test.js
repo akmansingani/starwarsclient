@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import { MovieTitle } from "./common/appCommon";
+import { MovieTitle, MostCharacter } from "./common/appCommon";
 
 import axios from "axios";
 import { fetchData } from "./common/fetchTestData";
@@ -20,16 +20,32 @@ describe("MovieTitle", () => {
     let tree = component.toJSON();
     expect(tree).toMatchSnapshot();
   });
-});
 
-describe('fetchData', () => {
-  it('fetches successfully data from an API', async () => {
+  it("fetches successfully data from an API", async () => {
     const data = { status: "success", response: "A New Hope" };
     axios.get.mockImplementationOnce(() => Promise.resolve(data));
     await expect(fetchData("home/getTitleOpenCrawl")).resolves.toEqual(data);
-    
   });
+
+});
+
+describe("MostAppearedCharacter", () => {
+  test("snapshot renders", () => {
+    const component = renderer.create(<MostCharacter varCharacter={"test"} />);
+    let tree = component.toJSON();
+    expect(tree).toMatchSnapshot();
+  });
+
   
+  it("fetches successfully data from an API", async () => {
+      const data = { status: "success", response: "A New Hope" };
+      axios.get.mockImplementationOnce(() => Promise.resolve(data));
+      await expect(fetchData("home/getCharacterMostAppeared")).resolves.toEqual(
+        data
+      );
+  });
+
+
 });
 
 
