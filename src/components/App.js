@@ -10,7 +10,7 @@ import {
 import * as actions from "../actions";
 import { connect } from "react-redux";
 
-import { MovieTitle } from "./common/appCommon";
+import { MovieTitle, MostCharacter } from "./common/appCommon";
 
 
 class App extends Component {
@@ -61,7 +61,9 @@ class App extends Component {
                 />
                 <p>
                   <button
-                    onClick={ () => this.props.getMovieTitleOpeningCrawl(this.varResetFlag)}
+                    onClick={() =>
+                      this.props.getMovieTitleOpeningCrawl(this.varResetFlag)
+                    }
                     className="btn btn-danger mb-4"
                   >
                     Do. Or do not.There is no try
@@ -70,7 +72,9 @@ class App extends Component {
                 <div className="mb-4">
                   <MovieTitle varTitle={this.varTitle} />
                 </div>
-                
+                <div className="mb-4">
+                  <MostCharacter varCharacter={this.varCharacter} />
+                </div>
               </div>
             </section>
           </main>

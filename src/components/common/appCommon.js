@@ -15,4 +15,17 @@ export const MovieTitle = ({ varTitle }) => (
   </Fragment>
 );
 
-
+export const MostCharacter = ({ varCharacter }) => (
+  <Fragment>
+    {varCharacter === "" ? (
+      ""
+    ) : (
+      <div>
+        <div className="quesText mb-2">
+          What character(person) appeared in the most of StarWar Films ?
+        </div>
+        <div className="ansText mb-4">{varCharacter}</div>
+      </div>
+    )}
+  </Fragment>
+);
