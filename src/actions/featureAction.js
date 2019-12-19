@@ -1,5 +1,6 @@
 import axios from "axios";
 import { FEATURE_TITLE, FEATURE_SPECIES, FEATURE_CHARACTER,FEATURE_RESET } from "./types";
+import parseJson from "parse-json";
 
 export const getMovieTitleOpeningCrawl = resetFlag => {
          // reset action state and inform reducer
@@ -56,14 +57,58 @@ export const getCharacterMostAppeared = () => {
 
     // call api for getting most appeard character data
     try {
+          const req = await axios({
+            method: "get",
+            url: url + "/home/getCharacterMostAppeared",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json"
+            }
+          });
+
+          let resp = {
+            status: "success",
+            type: respType,
+            data: req.data
+          };
+
+          // call next method for data
+          dispatch(getMostNumberOfSpecies());
+
+          dispatch({ type: respType, payload: resp });
+        } catch (error) {
+      let resp = {
+        status: "error",
+        type: respType,
+        data: "Error occured, please try again later!"
+      };
+
+      if (error.response) {
+        resp["data"] = error.response.data["error"];
+      }
+
+      dispatch({ type: respType, payload: resp });
+    }
+  };
+};
+
+export const getMostNumberOfSpecies = () => {
+  return async function(dispatch) {
+    let url = process.env.REACT_APP_API_URL;
+    let respType = FEATURE_SPECIES;
+
+    // call api for getting most number of species
+    try {
       const req = await axios({
         method: "get",
-        url: url + "/home/getCharacterMostAppeared",
+        url: url + "/home/getMostNumberOfSpecies",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json"
         }
       });
+
+      
 
       let resp = {
         status: "success",

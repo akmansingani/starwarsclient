@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { element } from "prop-types";
 
 export const MovieTitle = ({ varTitle }) => (
   <Fragment>
@@ -29,3 +30,22 @@ export const MostCharacter = ({ varCharacter }) => (
     )}
   </Fragment>
 );
+
+export const MostSpecies = ({ varSpecies }) => (
+         <Fragment>
+           {varSpecies.length === 0 ? (
+             ""
+           ) : (
+             <div>
+               <div className="quesText mb-2">
+                 What species appeared in the most number of StarWars films (Top 5) ?
+               </div>
+               {varSpecies.map((item, index) => (
+                 <div key={index} className="ansText mb-4">
+                   {item.speciesname} ({item.speciescount})
+                 </div>
+               ))}
+             </div>
+           )}
+         </Fragment>
+       );
