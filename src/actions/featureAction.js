@@ -14,23 +14,26 @@ export const getMovieTitleOpeningCrawl = resetFlag => {
 
            // call api for getting title with opening crawl
            try {
-             const req = await axios({
-               method: "get",
-               url: url + "/home/getTitleOpenCrawl",
-               headers: {
-                 "Content-Type": "application/json",
-                 Accept: "application/json"
-               }
-             });
+                 const req = await axios({
+                   method: "get",
+                   url: url + "/home/getTitleOpenCrawl",
+                   headers: {
+                     "Content-Type": "application/json",
+                     Accept: "application/json"
+                   }
+                 });
 
-             let resp = {
-               status: "success",
-               type: FEATURE_TITLE,
-               data: req.data
-             };
+                 let resp = {
+                   status: "success",
+                   type: FEATURE_TITLE,
+                   data: req.data
+                 };
 
-             dispatch({ type: FEATURE_TITLE, payload: resp });
-           } catch (error) {
+                 // call next method for data
+                 dispatch(getCharacterMostAppeared());
+
+                 dispatch({ type: FEATURE_TITLE, payload: resp });
+               } catch (error) {
              let resp = {
                status: "error",
                type: FEATURE_TITLE,
@@ -46,3 +49,41 @@ export const getMovieTitleOpeningCrawl = resetFlag => {
          };
        };
 
+export const getCharacterMostAppeared = () => {
+  return async function(dispatch) {
+    let url = process.env.REACT_APP_API_URL;
+    let respType = FEATURE_CHARACTER;
+
+    // call api for getting most appeard character data
+    try {
+      const req = await axios({
+        method: "get",
+        url: url + "/home/getCharacterMostAppeared",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        }
+      });
+
+      let resp = {
+        status: "success",
+        type: respType,
+        data: req.data
+      };
+
+      dispatch({ type: respType, payload: resp });
+    } catch (error) {
+      let resp = {
+        status: "error",
+        type: respType,
+        data: "Error occured, please try again later!"
+      };
+
+      if (error.response) {
+        resp["data"] = error.response.data["error"];
+      }
+
+      dispatch({ type: respType, payload: resp });
+    }
+  };
+};
