@@ -8,7 +8,7 @@ App consume web service hosted on Azure url : http://starwartestapi.azurewebsite
 
 For more details regarding azure webservice please check out git url : https://github.com/akmansingani/starwartestapi
 
-Steps to Setup
+### `Setup Steps`
 
 1) First clone/download web service api from github ( https://github.com/akmansingani/starwartestapi )
 2) First clone/download client app from github ( https://github.com/akmansingani/starwarsclient )
