@@ -1,4 +1,10 @@
-import { FEATURE_TITLE,FEATURE_SPECIES,FEATURE_CHARACTER,FEATURE_RESET } from "../actions/types";
+import {
+  FEATURE_TITLE,
+  FEATURE_SPECIES,
+  FEATURE_CHARACTER,
+  FEATURE_RESET,
+  FEATURE_PLANET
+} from "../actions/types";
 
 export default function(state = null, action) {
 
@@ -12,6 +18,8 @@ export default function(state = null, action) {
     case FEATURE_CHARACTER:
       return action.payload || null;
     case FEATURE_RESET:
+      return action.payload || null;
+    case FEATURE_PLANET:
       return action.payload || null;
     default:
       return state;
