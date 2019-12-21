@@ -4,30 +4,44 @@ import {
   FEATURE_TITLE,
   FEATURE_SPECIES,
   FEATURE_CHARACTER,
-  FEATURE_RESET
+  FEATURE_PLANET
 } from "../actions/types";
 
 import * as actions from "../actions";
 import { connect } from "react-redux";
 
-import { MovieTitle, MostCharacter, MostSpecies } from "./common/appCommon";
+import { MovieTitle, MostCharacter, MostSpecies,MostPlanet } from "./common/appCommon";
 
 
 class App extends Component {
   varTitle = "";
   varCharacter = "";
   varSpecies = [];
+  varPlanets = [];
   varResetFlag = false;
+  varLoading = false;
+
+  constructor(props) {
+    super(props);
+    this.startDataProcess = this.startDataProcess.bind(this);
+  }
+
+  startDataProcess = () => {
+    this.varLoading = this.varLoading ? false : true;
+    this.props.getMovieTitleOpeningCrawl(this.varResetFlag);
+  };
 
   renderServerResponse() {
     const { feature } = this.props;
 
     switch (feature) {
       case undefined || null:
-         this.varTitle = "";
-         this.varCharacter = "";
-         this.varSpecies = [];
-         this.varResetFlag = false;
+        this.varTitle = "";
+        this.varCharacter = "";
+        this.varSpecies = [];
+        this.varPlanets = [];
+        this.varResetFlag = false;
+        this.varLoading = false;
         return;
       default:
         if (feature["status"] === "error") {
@@ -37,28 +51,28 @@ class App extends Component {
             this.varTitle = feature["data"]["response"];
             this.varResetFlag = true;
             return;
-          }
-          if (feature["type"] === FEATURE_CHARACTER) {
+          } else if (feature["type"] === FEATURE_CHARACTER) {
             this.varCharacter = feature["data"]["response"];
             return;
-          }
-          if (feature["type"] === FEATURE_SPECIES) {
-            if(feature["data"]["response"] !== "")
-            {
-              var data =  JSON.parse(feature["data"]["response"]).species;
+          } else if (feature["type"] === FEATURE_SPECIES) {
+            if (feature["data"]["response"] !== "") {
+              var data = JSON.parse(feature["data"]["response"]).species;
               this.varSpecies = data;
             }
-           
-            
+            return;
+          } else if (feature["type"] === FEATURE_PLANET) {
+            if (feature["data"]["response"] !== "") {
+              var resp = JSON.parse(feature["data"]["response"]).planets;
+              this.varPlanets = resp;
+              this.varLoading = false;
+            }
             return;
           }
-          
         }
     }
   }
 
   render() {
-
     return (
       <Fragment>
         {this.renderServerResponse()}
@@ -73,12 +87,13 @@ class App extends Component {
                 />
                 <p>
                   <button
-                    onClick={() =>
-                      this.props.getMovieTitleOpeningCrawl(this.varResetFlag)
-                    }
+                    onClick={this.startDataProcess}
                     className="btn btn-danger mb-4"
+                    disabled={this.varLoading}
                   >
-                    Do. Or do not.There is no try
+                    {this.varLoading
+                      ? "Loading..."
+                      : "Do. Or do not.There is no try"}
                   </button>
                 </p>
                 <div className="mb-4">
@@ -89,6 +104,9 @@ class App extends Component {
                 </div>
                 <div className="mb-4">
                   <MostSpecies varSpecies={this.varSpecies} />
+                </div>
+                <div className="mb-4">
+                  <MostPlanet varPlanets={this.varPlanets} />
                 </div>
               </div>
             </section>

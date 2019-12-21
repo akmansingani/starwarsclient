@@ -3,7 +3,7 @@
 exports[`MostAppearedCharacter snapshot renders 1`] = `
 <div>
   <div
-    className="quesText mb-2"
+    className="quesText mb-4"
   >
     What character(person) appeared in the most of StarWar Films ?
   </div>
@@ -15,10 +15,39 @@ exports[`MostAppearedCharacter snapshot renders 1`] = `
 </div>
 `;
 
+exports[`MostNumberOfPilots snapshot renders 1`] = `
+<div>
+  <div
+    className="quesText mb-4"
+  >
+    What planet in Star Wars universe provided largest number of vehicle pilots (Top 5) ?
+  </div>
+  <div
+    className="ansText mb-4"
+  >
+    Planet : 
+    Tatooine
+     - Pilots : (
+    19
+    ) -
+    <span>
+       
+      Chewbacca - Wookie
+       , 
+    </span>
+    <span>
+       
+      Nien Nunb - Sullustan
+      
+    </span>
+  </div>
+</div>
+`;
+
 exports[`MostNumberOfSpecies snapshot renders 1`] = `
 <div>
   <div
-    className="quesText mb-2"
+    className="quesText mb-4"
   >
     What species appeared in the most number of StarWars films (Top 5) ?
   </div>
@@ -36,7 +65,7 @@ exports[`MostNumberOfSpecies snapshot renders 1`] = `
 exports[`MovieTitle snapshot renders 1`] = `
 <div>
   <div
-    className="quesText mb-2"
+    className="quesText mb-4"
   >
     Which of all StarWars movies has longest opening crawl ?
   </div>
