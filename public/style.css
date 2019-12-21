@@ -1,0 +1,31 @@
+  @import url('https://fonts.googleapis.com/css?family=Roboto');
+
+body {
+    font-family: "Roboto";
+    background-color: black;
+}
+
+.quesText
+{
+    color: white;
+    font-size: 1.3rem;
+    
+}
+
+.ansText
+{
+    color:gold;
+    font-size: 1.5rem;
+    
+}
+
+.imgLogo
+{
+    width: 40%;
+    height: 40%;
+}
+
+.jumbotron
+{
+    background-color: black !important;
+}
