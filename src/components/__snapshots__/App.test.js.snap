@@ -15,6 +15,24 @@ exports[`MostAppearedCharacter snapshot renders 1`] = `
 </div>
 `;
 
+exports[`MostNumberOfSpecies snapshot renders 1`] = `
+<div>
+  <div
+    className="quesText mb-2"
+  >
+    What species appeared in the most number of StarWars films (Top 5) ?
+  </div>
+  <div
+    className="ansText mb-4"
+  >
+    Human
+     (
+    4
+    )
+  </div>
+</div>
+`;
+
 exports[`MovieTitle snapshot renders 1`] = `
 <div>
   <div

@@ -10,12 +10,13 @@ import {
 import * as actions from "../actions";
 import { connect } from "react-redux";
 
-import { MovieTitle, MostCharacter } from "./common/appCommon";
+import { MovieTitle, MostCharacter, MostSpecies } from "./common/appCommon";
 
 
 class App extends Component {
   varTitle = "";
   varCharacter = "";
+  varSpecies = [];
   varResetFlag = false;
 
   renderServerResponse() {
@@ -25,6 +26,7 @@ class App extends Component {
       case undefined || null:
          this.varTitle = "";
          this.varCharacter = "";
+         this.varSpecies = [];
          this.varResetFlag = false;
         return;
       default:
@@ -38,6 +40,16 @@ class App extends Component {
           }
           if (feature["type"] === FEATURE_CHARACTER) {
             this.varCharacter = feature["data"]["response"];
+            return;
+          }
+          if (feature["type"] === FEATURE_SPECIES) {
+            if(feature["data"]["response"] !== "")
+            {
+              var data =  JSON.parse(feature["data"]["response"]).species;
+              this.varSpecies = data;
+            }
+           
+            
             return;
           }
           
@@ -74,6 +86,9 @@ class App extends Component {
                 </div>
                 <div className="mb-4">
                   <MostCharacter varCharacter={this.varCharacter} />
+                </div>
+                <div className="mb-4">
+                  <MostSpecies varSpecies={this.varSpecies} />
                 </div>
               </div>
             </section>
