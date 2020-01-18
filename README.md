@@ -1,13 +1,5 @@
 ## Star Wars App - ReactJS
 
-### `Demo url`
-http://startwarclient.herokuapp.com/
-
-### `Web service`
-App consume web service hosted on Azure url : http://starwartestapi.azurewebsites.net/api/home/
-
-For more details regarding azure webservice please check out git url : https://github.com/akmansingani/starwartestapi
-
 ### `Setup Steps`
 
 1) First clone/download web service api from github ( https://github.com/akmansingani/starwartestapi )
